@@ -254,7 +254,8 @@
             @"email": user.email ? user.email : @"",
             @"phoneNumber": user.phoneNumber ? user.phoneNumber : @"",
             @"photoURL": user.photoURL ? user.photoURL.absoluteString : @"",
-            @"emailVerified": [NSNumber numberWithBool:user.emailVerified]
+            @"emailVerified": [NSNumber numberWithBool:user.emailVerified],
+            @"refreshToken": user.refreshToken ? user.refreshToken : @""
         };
     }
 

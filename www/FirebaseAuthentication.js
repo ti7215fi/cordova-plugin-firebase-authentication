@@ -21,6 +21,11 @@ module.exports = {
             exec(resolve, reject, PLUGIN_NAME, "getIdToken", [forceRefresh]);
         });
     },
+    getStoredUserForAccessGroup: function(accessGroup) {
+        return new Promise(function(resolve, reject) {
+            exec(resolve, reject, PLUGIN_NAME, "getStoredUserForAccessGroup", [accessGroup]);
+        });
+    },
     createUserWithEmailAndPassword: function(email, password) {
         return new Promise(function(resolve, reject) {
             exec(resolve, reject, PLUGIN_NAME, "createUserWithEmailAndPassword", [email, password]);
@@ -104,6 +109,11 @@ module.exports = {
     useEmulator: function(host, port) {
         return new Promise(function(resolve, reject) {
             exec(resolve, reject, PLUGIN_NAME, "useEmulator", [host, port]);
+        });
+    },
+    useUserAccessGroup: function(accessGroup) {
+        return new Promise(function(resolve, reject) {
+            exec(resolve, reject, PLUGIN_NAME, "useUserAccessGroup", [accessGroup]);
         });
     }
 };

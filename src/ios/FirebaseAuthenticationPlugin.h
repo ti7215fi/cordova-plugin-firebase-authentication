@@ -23,6 +23,8 @@
 - (void)setAuthStateChanged:(CDVInvokedUrlCommand*)command;
 - (void)updateProfile:(CDVInvokedUrlCommand*)command;
 - (void)useEmulator:(CDVInvokedUrlCommand*)command;
+- (void)useUserAccessGroup:(CDVInvokedUrlCommand *)command;
+- (void)getStoredUserForAccessGroup:(CDVInvokedUrlCommand*)command 
 
 @property (strong, nonatomic) FIRAuthStateDidChangeListenerHandle authChangedHandler;
 

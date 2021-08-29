@@ -207,6 +207,22 @@ Set's the current user language code. The string used to set this property must 
 ### useAppLanguage()
 Sets languageCode to the app’s current language.
 
+## Enabling cross-app authentication with shared iOS Keychain
+### useUserAccessGroup(_accessGroup_)
+Switch userAccessGroup and current user to the given accessGroup and the user stored in it.
+```js
+cordova.plugins.firebase.auth.useUserAccessGroup("TEAMID.com.example.group1").then(function() {
+    // The same current user is now available in all apps/extensions in the access group (if logged in).
+});
+```
+### getStoredUserForAccessGroup(_accessGroup_)
+Get the stored user in the given accessGroup.
+```js
+cordova.plugins.firebase.auth.getStoredUserForAccessGroup("TEAMID.com.example.group1").then(function(userInfo) {
+    // user information or null if not logged in
+});
+```
+
 [npm-url]: https://www.npmjs.com/package/cordova-plugin-firebase-authentication
 [npm-version]: https://img.shields.io/npm/v/cordova-plugin-firebase-authentication.svg
 [npm-downloads]: https://img.shields.io/npm/dm/cordova-plugin-firebase-authentication.svg

@@ -234,6 +234,35 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+-(void)useUserAccessGroup:(CDVInvokedUrlCommand *)command {
+    NSString* accessGroup = [command.arguments objectAtIndex:0];
+    NSError* switchAccessGroupError;
+    CDVPluginResult* pluginResult;
+    
+    if ([[FIRAuth auth] useUserAccessGroup:accessGroup error:&switchAccessGroupError]) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    } else {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:switchAccessGroupError.localizedDescription];
+    }
+
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+-(void)getStoredUserForAccessGroup:(CDVInvokedUrlCommand *)command {
+    NSString* accessGroup = [command.arguments objectAtIndex:0];
+    NSError* error;
+    CDVPluginResult* pluginResult;
+
+    FIRUser* user = [[FIRAuth auth] getStoredUserForAccessGroup:accessGroup error:&error];
+    if (error) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
+    } else {
+        pluginResult = [self getProfileResult:user];
+    }
+
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 - (void) respondWith:(NSError*)error callbackId:(NSString*)callbackId {
     CDVPluginResult *pluginResult;
     if (error) {
